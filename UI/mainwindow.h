@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "Widgets/toolbar.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -13,11 +15,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    Ui::MainWindow *ui;
+    Toolbar *toolbar;
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-private:
-    Ui::MainWindow *ui;
 };
 #endif  // MAINWINDOW_H
