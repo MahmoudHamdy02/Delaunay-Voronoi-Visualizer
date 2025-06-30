@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <qaction.h>
+
 #include <QMainWindow>
 
 #include "Widgets/toolbar.h"
@@ -21,5 +23,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+public slots:
+    void onToolbarActionSelected(QAction *action);
 };
 #endif  // MAINWINDOW_H

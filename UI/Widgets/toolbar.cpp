@@ -12,14 +12,18 @@ Toolbar::Toolbar()
     actionGroup->setExclusive(true);
 
     // Create an action for each mode
-    QAction* delaunayAction = new QAction("Delaunay Triangulation", this);
+    delaunayAction = new QAction("Delaunay Triangulation", this);
     delaunayAction->setCheckable(true);
     delaunayAction->setChecked(true);
     actionGroup->addAction(delaunayAction);
     this->addAction(delaunayAction);
 
-    QAction* voronoiAction = new QAction("Voronoi Diagram", this);
+    voronoiAction = new QAction("Voronoi Diagram", this);
     voronoiAction->setCheckable(true);
     actionGroup->addAction(voronoiAction);
     this->addAction(voronoiAction);
+}
+
+QActionGroup* Toolbar::getActionGroup() const {
+    return actionGroup;
 }
