@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include <qaction.h>
+#include <qapplication.h>
 #include <qmessagebox.h>
 
 #include <QMessageBox>
@@ -34,6 +35,12 @@ void MainWindow::onToolbarActionSelected(QAction* action)
 
 void MainWindow::setupMenubar()
 {
+    // File -> New Canvas
+    connect(ui->actionNew_Canvas, &QAction::triggered, this, []() { std::cout << "New canvas" << std::endl; });
+
+    // File -> Exit
+    connect(ui->actionExit, &QAction::triggered, this, []() { qApp->exit(); });
+
     // Help -> How to use
     connect(ui->actionHow_to_use, &QAction::triggered, this,
             [this]() { QMessageBox::information(this, "Usage instructions", "Usage text here"); });
