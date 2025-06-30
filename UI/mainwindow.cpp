@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 
     // Setup toolbar
-    toolbar = new Toolbar();
+    toolbar = new Toolbar(this);
     addToolBar(Qt::LeftToolBarArea, toolbar);
 
     connect(toolbar->getActionGroup(), &QActionGroup::triggered, this, &MainWindow::onToolbarActionSelected);

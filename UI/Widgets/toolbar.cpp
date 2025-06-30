@@ -1,8 +1,10 @@
 #include "toolbar.h"
 
 #include <qaction.h>
+#include <qtoolbar.h>
+#include <qwidget.h>
 
-Toolbar::Toolbar()
+Toolbar::Toolbar(QWidget* parent) : QToolBar(parent)
 {
     setMovable(false);
     setFloatable(false);
@@ -24,6 +26,7 @@ Toolbar::Toolbar()
     this->addAction(voronoiAction);
 }
 
-QActionGroup* Toolbar::getActionGroup() const {
+QActionGroup* Toolbar::getActionGroup() const
+{
     return actionGroup;
 }

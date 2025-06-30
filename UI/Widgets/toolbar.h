@@ -2,6 +2,7 @@
 
 #include <qaction.h>
 #include <qactiongroup.h>
+#include <qwidget.h>
 
 #include <QActionGroup>
 #include <QToolBar>
@@ -13,6 +14,6 @@ class Toolbar : public QToolBar
     QAction* voronoiAction;
 
 public:
-    Toolbar();
+    Toolbar(QWidget* parent);
     QActionGroup* getActionGroup() const;
 };
