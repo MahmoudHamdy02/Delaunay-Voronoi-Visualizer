@@ -20,6 +20,8 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
     Toolbar *toolbar;
 
+    void setupMenubar();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
