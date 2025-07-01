@@ -12,9 +12,17 @@ QGraphicsScene* System::getScene()
     return scene;
 }
 
-QList<QGraphicsItem*> System::getItems() const
+void System::redrawScene()
 {
-    return scene->items();
+    scene->clear();
+
+    for (QPointF p : points) {
+        scene->addEllipse(p.x() - pointRadius / 2.0f, p.y() - pointRadius / 2.0f, pointRadius, pointRadius, pointPen,
+                          pointBrush);
+    }
+    for (Edge e : edges) {
+        scene->addLine(e.p1.x(), e.p1.y(), e.p2.x(), e.p2.y());
+    }
 }
 
 std::vector<Edge> System::getEdges() const
@@ -32,8 +40,7 @@ std::vector<Edge> System::getEdges() const
 void System::addPoint(const QPointF& point)
 {
     points.push_back(point);
-    scene->addEllipse(point.x() - pointRadius / 2.0f, point.y() - pointRadius / 2.0f, pointRadius, pointRadius,
-                      pointPen, pointBrush);
+    redrawScene();
 }
 
 void System::resetScene()

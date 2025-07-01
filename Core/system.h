@@ -28,12 +28,12 @@ class System : public QObject
     const QPen pointPen = QPen();
     const QBrush pointBrush = QBrush(Qt::BrushStyle::SolidPattern);
 
+    void redrawScene();
+    std::vector<Edge> getEdges() const;
 public:
     System();
 
     QGraphicsScene* getScene();
-    QList<QGraphicsItem*> getItems() const;
-    std::vector<Edge> getEdges() const;
 
     void addPoint(const QPointF& point);
 
