@@ -46,6 +46,9 @@ void SceneController::addPoint(const QPointF& point)
 void SceneController::resetScene()
 {
     scene->clear();
+    points.clear();
+    triangles.clear();
+    edges.clear();
 }
 
 // Slots
