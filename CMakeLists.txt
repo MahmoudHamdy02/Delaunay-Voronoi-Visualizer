@@ -14,17 +14,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets)
 
+set(CORE_SOURCES
+    Core/system.cpp
+    Core/system.h
+)
+
+set(UI_SOURCES
+    UI/mainwindow.cpp
+    UI/mainwindow.h
+    UI/mainwindow.ui
+    UI/Widgets/toolbar.h
+    UI/Widgets/toolbar.cpp
+    UI/Widgets/view.h
+    UI/Widgets/view.cpp
+)
+
 set(PROJECT_SOURCES
         main.cpp
-        UI/mainwindow.cpp
-        UI/mainwindow.h
-        UI/mainwindow.ui
-        UI/Widgets/toolbar.h 
-        UI/Widgets/toolbar.cpp
-        UI/Widgets/view.h 
-        UI/Widgets/view.cpp
-        Core/system.cpp
-        Core/system.h
+        ${CORE_SOURCES}
+        ${UI_SOURCES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
