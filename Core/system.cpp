@@ -1,8 +1,11 @@
 #include "system.h"
 
-#include <iostream>
-
 System::System()
 {
-    std::cout << "Core system initialized" << std::endl;
+    scene = new QGraphicsScene();
+}
+
+QList<QGraphicsItem*> System::getItems() const
+{
+    return scene->items();
 }
