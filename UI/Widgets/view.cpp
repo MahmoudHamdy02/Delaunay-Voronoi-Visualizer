@@ -18,7 +18,7 @@ View::View(QGraphicsScene *scene, QWidget *parent) : QGraphicsView(scene, parent
 
     setBackgroundBrush(Qt::white);
 
-    setSceneRect(0, 0, width(), height());
+    setSceneRect(-width() / 2.0, -height() / 2.0, width(), height());
 }
 
 void View::mousePressEvent(QMouseEvent *event)

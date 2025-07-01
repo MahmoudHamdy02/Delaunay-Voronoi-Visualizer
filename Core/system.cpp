@@ -3,7 +3,6 @@
 System::System()
 {
     scene = new QGraphicsScene();
-    scene->addEllipse(0, 0, pointRadius, pointRadius, pointPen, pointBrush);
 }
 
 QGraphicsScene* System::getScene()
