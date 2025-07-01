@@ -2,12 +2,12 @@
 #define MAINWINDOW_H
 
 #include <qaction.h>
-#include <qgraphicsview.h>
 
 #include <QMainWindow>
 
 #include "../Core/system.h"
 #include "Widgets/toolbar.h"
+#include "Widgets/view.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,7 +23,7 @@ class MainWindow : public QMainWindow
     System *system;
 
     Toolbar *toolbar;
-    QGraphicsView *view;
+    View *view;
 
     void setupMenubar();
     void setupToolbar();

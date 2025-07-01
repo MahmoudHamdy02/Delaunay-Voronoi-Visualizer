@@ -19,6 +19,10 @@ set(PROJECT_SOURCES
         UI/mainwindow.cpp
         UI/mainwindow.h
         UI/mainwindow.ui
+        UI/Widgets/toolbar.h 
+        UI/Widgets/toolbar.cpp
+        UI/Widgets/view.h 
+        UI/Widgets/view.cpp
         Core/system.cpp
         Core/system.h
 )
@@ -27,7 +31,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(delaunay_voronoi_viz
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        UI/Widgets/toolbar.h UI/Widgets/toolbar.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET delaunay_voronoi_viz APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

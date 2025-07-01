@@ -10,6 +10,7 @@
 
 #include "./ui_mainwindow.h"
 #include "Widgets/toolbar.h"
+#include "Widgets/view.h"
 
 MainWindow::MainWindow(System* system, QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), system(system)
 {
@@ -56,16 +57,7 @@ void MainWindow::setupToolbar()
 
 void MainWindow::setupOpenGLView()
 {
-    view = new QGraphicsView(system->getScene());
-    // view->setViewport(new QOpenGLWidget);
+    view = new View(system->getScene(), this);
 
-    QOpenGLWidget* gl = new QOpenGLWidget();
-    QSurfaceFormat format;
-    format.setSamples(8);
-    gl->setFormat(format);
-    view->setViewport(gl);
-
-    view->setBackgroundBrush(Qt::white);
-    view->setRenderHint(QPainter::Antialiasing, true);
     ui->horizontalLayout->addWidget(view);
 }
