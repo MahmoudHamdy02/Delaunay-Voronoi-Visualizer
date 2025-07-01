@@ -15,3 +15,8 @@ QList<QGraphicsItem*> System::getItems() const
 {
     return scene->items();
 }
+
+void System::resetScene()
+{
+    scene->clear();
+}

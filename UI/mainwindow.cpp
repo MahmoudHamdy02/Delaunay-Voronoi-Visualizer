@@ -33,7 +33,7 @@ void MainWindow::onToolbarActionSelected(QAction* action)
 void MainWindow::setupMenubar()
 {
     // File -> New Canvas
-    connect(ui->actionNew_Canvas, &QAction::triggered, this, []() { std::cout << "New canvas" << std::endl; });
+    connect(ui->actionNew_Canvas, &QAction::triggered, this, [this]() { system->resetScene(); });
 
     // File -> Exit
     connect(ui->actionExit, &QAction::triggered, this, []() { qApp->exit(); });

@@ -12,4 +12,5 @@ public:
 
     QGraphicsScene* getScene();
     QList<QGraphicsItem*> getItems() const;
+    void resetScene();
 };
