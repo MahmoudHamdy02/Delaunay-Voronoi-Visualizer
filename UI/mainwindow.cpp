@@ -2,25 +2,22 @@
 
 #include <qaction.h>
 #include <qapplication.h>
+#include <qgraphicsview.h>
 #include <qmessagebox.h>
+#include <qopenglwidget.h>
 
-#include <QMessageBox>
 #include <iostream>
 
 #include "./ui_mainwindow.h"
 #include "Widgets/toolbar.h"
 
-MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow(System* system, QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), system(system)
 {
     ui->setupUi(this);
 
     setupMenubar();
-
-    // Setup toolbar
-    toolbar = new Toolbar(this);
-    addToolBar(Qt::LeftToolBarArea, toolbar);
-
-    connect(toolbar->getActionGroup(), &QActionGroup::triggered, this, &MainWindow::onToolbarActionSelected);
+    setupToolbar();
+    setupOpenGLView();
 }
 
 MainWindow::~MainWindow()
@@ -47,4 +44,28 @@ void MainWindow::setupMenubar()
 
     // Help -> About
     connect(ui->actionAbout, &QAction::triggered, this, [this]() { QMessageBox::aboutQt(this, "About"); });
+}
+
+void MainWindow::setupToolbar()
+{
+    toolbar = new Toolbar(this);
+    addToolBar(Qt::LeftToolBarArea, toolbar);
+
+    connect(toolbar->getActionGroup(), &QActionGroup::triggered, this, &MainWindow::onToolbarActionSelected);
+}
+
+void MainWindow::setupOpenGLView()
+{
+    view = new QGraphicsView(system->getScene());
+    // view->setViewport(new QOpenGLWidget);
+
+    QOpenGLWidget* gl = new QOpenGLWidget();
+    QSurfaceFormat format;
+    format.setSamples(8);
+    gl->setFormat(format);
+    view->setViewport(gl);
+
+    view->setBackgroundBrush(Qt::white);
+    view->setRenderHint(QPainter::Antialiasing, true);
+    ui->horizontalLayout->addWidget(view);
 }

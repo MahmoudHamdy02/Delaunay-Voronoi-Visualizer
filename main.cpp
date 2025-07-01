@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     System *system = new System();
 
-    MainWindow w;
+    MainWindow w(system);
     w.show();
     return a.exec();
 }

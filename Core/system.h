@@ -10,5 +10,6 @@ class System
 public:
     System();
 
+    QGraphicsScene* getScene();
     QList<QGraphicsItem*> getItems() const;
 };

@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <qaction.h>
+#include <qgraphicsview.h>
 
 #include <QMainWindow>
 
+#include "../Core/system.h"
 #include "Widgets/toolbar.h"
 
 QT_BEGIN_NAMESPACE
@@ -18,12 +20,17 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     Ui::MainWindow *ui;
+    System *system;
+
     Toolbar *toolbar;
+    QGraphicsView *view;
 
     void setupMenubar();
+    void setupToolbar();
+    void setupOpenGLView();
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(System *system, QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
