@@ -19,8 +19,10 @@ class SceneController : public QObject
     QGraphicsScene* scene;
 
     // Geometry
+    const Triangle superTriangle = Triangle({0.0, -400.0}, {400.0, 200.0}, {-400.0, 200.0});
+
     std::vector<QPointF> points = {};
-    std::vector<Triangle> triangles = {};
+    std::vector<Triangle> triangles = {superTriangle};
     std::vector<Edge> edges = {};
 
     // Drawing
@@ -28,8 +30,11 @@ class SceneController : public QObject
     const QPen pointPen = QPen();
     const QBrush pointBrush = QBrush(Qt::BrushStyle::SolidPattern);
 
+    void triangulate(const QPointF& point);
+
     void redrawScene();
     std::vector<Edge> getEdges() const;
+
 public:
     SceneController();
 

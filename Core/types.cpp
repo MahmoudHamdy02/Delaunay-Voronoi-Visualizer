@@ -19,7 +19,7 @@ Edge::Edge(QPointF p1, QPointF p2) : p1(p1), p2(p2) {}
 
 bool Edge::operator==(const Edge& other) const
 {
-    return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p1 == other.p2);
+    return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
 }
 
 Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
@@ -35,12 +35,17 @@ Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
         this->p1 = p2;
         this->p2 = p1;
     }
+    edges.emplace_back(p1, p2);
+    edges.emplace_back(p2, p3);
+    edges.emplace_back(p3, p1);
 }
 
-std::array<Edge, 3> Triangle::getEdges() const
+bool Triangle::contains(const Edge& edge) const
 {
-    std::array<Edge, 3> edges = {Edge(p1, p2), Edge(p2, p3), Edge(p3, p1)};
-    return edges;
+    return edge == edges[0] || edge == edges[1] || edge == edges[2];
+    // return (edge.p1 == edges[0].p1 && edge.p2 == edges[0].p2) || (edge.p1 == edges[1].p1 && edge.p2 == edges[1].p2)
+    // ||
+    //        (edge.p1 == edges[2].p1 && edge.p2 == edges[2].p2);
 }
 
 bool Triangle::isPointInsideCircumcircle(QPointF p) const
@@ -61,4 +66,9 @@ bool Triangle::isPointInsideCircumcircle(QPointF p) const
                                        pow(x3, 2) + pow(y3, 2));
 
     return determinant > 0.0;
+}
+
+bool Triangle::operator==(const Triangle& other) const
+{
+    return edges[0] == other.edges[0] && edges[1] == other.edges[1] && edges[2] == other.edges[2];
 }

@@ -2,6 +2,8 @@
 
 #include <qpoint.h>
 
+#include <vector>
+
 class Edge
 {
 public:
@@ -48,9 +50,12 @@ class Triangle
 {
 public:
     QPointF p1, p2, p3;
+    std::vector<Edge> edges;
 
     Triangle(QPointF, QPointF, QPointF);
 
-    std::array<Edge, 3> getEdges() const;
+    bool contains(const Edge& edge) const;
     bool isPointInsideCircumcircle(QPointF) const;
+
+    bool operator==(const Triangle& other) const;
 };
