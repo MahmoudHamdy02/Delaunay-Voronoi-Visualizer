@@ -17,6 +17,8 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGL OpenGLWidg
 set(CORE_SOURCES
     Core/system.cpp
     Core/system.h
+    Core/types.cpp
+    Core/types.h
 )
 
 set(UI_SOURCES
