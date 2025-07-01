@@ -7,12 +7,21 @@
 #include <qpoint.h>
 #include <qtmetamacros.h>
 
+#include <vector>
+
+#include "types.h"
+
 // Manages the graphics scene and the geometry entities
 class System : public QObject
 {
     Q_OBJECT
 
     QGraphicsScene* scene;
+
+    // Geometry
+    std::vector<QPointF> points = {};
+    std::vector<Triangle> triangles = {};
+    std::vector<Edge> edges = {};
 
     // Drawing
     const float pointRadius = 8.0f;
@@ -24,11 +33,12 @@ public:
 
     QGraphicsScene* getScene();
     QList<QGraphicsItem*> getItems() const;
+    std::vector<Edge> getEdges() const;
 
-    void addPoint(QPointF point);
+    void addPoint(const QPointF& point);
 
     void resetScene();
 
 public slots:
-    void onAddPoint(QPointF point);
+    void onAddPoint(const QPointF& point);
 };

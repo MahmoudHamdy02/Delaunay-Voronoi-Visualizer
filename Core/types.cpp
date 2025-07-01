@@ -17,6 +17,11 @@ qreal determinant3x3(qreal a11, qreal a12, qreal a13, qreal a21, qreal a22, qrea
 
 Edge::Edge(QPointF p1, QPointF p2) : p1(p1), p2(p2) {}
 
+bool Edge::operator==(const Edge& other) const
+{
+    return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p1 == other.p2);
+}
+
 Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
 {
     // Test if the points are counter-clockwise, if not flip them
@@ -30,6 +35,12 @@ Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
         this->p1 = p2;
         this->p2 = p1;
     }
+}
+
+std::array<Edge, 3> Triangle::getEdges() const
+{
+    std::array<Edge, 3> edges = {Edge(p1, p2), Edge(p2, p3), Edge(p3, p1)};
+    return edges;
 }
 
 bool Triangle::isPointInsideCircumcircle(QPointF p) const

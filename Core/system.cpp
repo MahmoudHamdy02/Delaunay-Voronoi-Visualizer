@@ -1,5 +1,7 @@
 #include "system.h"
 
+#include <unordered_set>
+
 System::System()
 {
     scene = new QGraphicsScene();
@@ -15,8 +17,21 @@ QList<QGraphicsItem*> System::getItems() const
     return scene->items();
 }
 
-void System::addPoint(QPointF point)
+std::vector<Edge> System::getEdges() const
 {
+    std::unordered_set<Edge> edgeSet;
+
+    for (Triangle t : triangles) {
+        std::array<Edge, 3> edges = t.getEdges();
+        for (Edge e : edges) edgeSet.insert(e);
+    }
+
+    return std::vector<Edge>(edgeSet.begin(), edgeSet.end());
+}
+
+void System::addPoint(const QPointF& point)
+{
+    points.push_back(point);
     scene->addEllipse(point.x() - pointRadius / 2.0f, point.y() - pointRadius / 2.0f, pointRadius, pointRadius,
                       pointPen, pointBrush);
 }
@@ -27,7 +42,7 @@ void System::resetScene()
 }
 
 // Slots
-void System::onAddPoint(QPointF point)
+void System::onAddPoint(const QPointF& point)
 {
     addPoint(point);
 }
