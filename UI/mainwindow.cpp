@@ -59,5 +59,7 @@ void MainWindow::setupOpenGLView()
 {
     view = new View(system->getScene(), this);
 
+    connect(view, &View::emitAddPoint, system, &System::onAddPoint);
+
     ui->horizontalLayout->addWidget(view);
 }

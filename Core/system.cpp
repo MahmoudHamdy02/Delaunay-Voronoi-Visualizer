@@ -3,7 +3,7 @@
 System::System()
 {
     scene = new QGraphicsScene();
-    scene->addEllipse(0, 0, 10, 10, QPen(), QBrush(Qt::BrushStyle::SolidPattern));
+    scene->addEllipse(0, 0, pointRadius, pointRadius, pointPen, pointBrush);
 }
 
 QGraphicsScene* System::getScene()
@@ -16,7 +16,18 @@ QList<QGraphicsItem*> System::getItems() const
     return scene->items();
 }
 
+void System::addPoint(QPointF point)
+{
+    scene->addEllipse(point.x(), point.y(), pointRadius, pointRadius, pointPen, pointBrush);
+}
+
 void System::resetScene()
 {
     scene->clear();
+}
+
+// Slots
+void System::onAddPoint(QPointF point)
+{
+    addPoint(point);
 }

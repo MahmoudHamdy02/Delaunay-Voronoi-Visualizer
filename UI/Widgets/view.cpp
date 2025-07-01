@@ -1,6 +1,10 @@
 #include "view.h"
 
+#include <qevent.h>
+#include <qpoint.h>
+
 #include <QOpenGLWidget>
+
 View::View(QGraphicsScene *scene, QWidget *parent) : QGraphicsView(scene, parent)
 {
     QOpenGLWidget *gl = new QOpenGLWidget();
@@ -13,4 +17,11 @@ View::View(QGraphicsScene *scene, QWidget *parent) : QGraphicsView(scene, parent
     setViewport(gl);
 
     setBackgroundBrush(Qt::white);
+
+    setSceneRect(0, 0, width(), height());
+}
+
+void View::mousePressEvent(QMouseEvent *event)
+{
+    emit emitAddPoint(mapToScene(event->pos()));
 }
