@@ -12,7 +12,7 @@
 #include "types.h"
 
 // Manages the graphics scene and the geometry entities
-class System : public QObject
+class SceneController : public QObject
 {
     Q_OBJECT
 
@@ -31,7 +31,7 @@ class System : public QObject
     void redrawScene();
     std::vector<Edge> getEdges() const;
 public:
-    System();
+    SceneController();
 
     QGraphicsScene* getScene();
 

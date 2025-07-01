@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    System *system = new System();
+    SceneController *system = new SceneController();
 
     MainWindow w(system);
     w.show();

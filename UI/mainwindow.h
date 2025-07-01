@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     Ui::MainWindow *ui;
-    System *system;
+    SceneController *system;
 
     Toolbar *toolbar;
     View *view;
@@ -30,7 +30,7 @@ class MainWindow : public QMainWindow
     void setupOpenGLView();
 
 public:
-    MainWindow(System *system, QWidget *parent = nullptr);
+    MainWindow(SceneController *system, QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:

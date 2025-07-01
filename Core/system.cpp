@@ -2,17 +2,17 @@
 
 #include <unordered_set>
 
-System::System()
+SceneController::SceneController()
 {
     scene = new QGraphicsScene();
 }
 
-QGraphicsScene* System::getScene()
+QGraphicsScene* SceneController::getScene()
 {
     return scene;
 }
 
-void System::redrawScene()
+void SceneController::redrawScene()
 {
     scene->clear();
 
@@ -25,7 +25,7 @@ void System::redrawScene()
     }
 }
 
-std::vector<Edge> System::getEdges() const
+std::vector<Edge> SceneController::getEdges() const
 {
     std::unordered_set<Edge> edgeSet;
 
@@ -37,19 +37,19 @@ std::vector<Edge> System::getEdges() const
     return std::vector<Edge>(edgeSet.begin(), edgeSet.end());
 }
 
-void System::addPoint(const QPointF& point)
+void SceneController::addPoint(const QPointF& point)
 {
     points.push_back(point);
     redrawScene();
 }
 
-void System::resetScene()
+void SceneController::resetScene()
 {
     scene->clear();
 }
 
 // Slots
-void System::onAddPoint(const QPointF& point)
+void SceneController::onAddPoint(const QPointF& point)
 {
     addPoint(point);
 }

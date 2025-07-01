@@ -12,7 +12,7 @@
 #include "Widgets/toolbar.h"
 #include "Widgets/view.h"
 
-MainWindow::MainWindow(System* system, QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), system(system)
+MainWindow::MainWindow(SceneController* system, QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), system(system)
 {
     ui->setupUi(this);
 
@@ -59,7 +59,7 @@ void MainWindow::setupOpenGLView()
 {
     view = new View(system->getScene(), this);
 
-    connect(view, &View::emitAddPoint, system, &System::onAddPoint);
+    connect(view, &View::emitAddPoint, system, &SceneController::onAddPoint);
 
     ui->horizontalLayout->addWidget(view);
 }
