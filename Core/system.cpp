@@ -18,7 +18,8 @@ QList<QGraphicsItem*> System::getItems() const
 
 void System::addPoint(QPointF point)
 {
-    scene->addEllipse(point.x(), point.y(), pointRadius, pointRadius, pointPen, pointBrush);
+    scene->addEllipse(point.x() - pointRadius / 2.0f, point.y() - pointRadius / 2.0f, pointRadius, pointRadius,
+                      pointPen, pointBrush);
 }
 
 void System::resetScene()

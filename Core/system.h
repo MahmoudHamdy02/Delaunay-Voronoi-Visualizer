@@ -15,7 +15,7 @@ class System : public QObject
     QGraphicsScene* scene;
 
     // Drawing
-    const int pointRadius = 8;
+    const float pointRadius = 8.0f;
     const QPen pointPen = QPen();
     const QBrush pointBrush = QBrush(Qt::BrushStyle::SolidPattern);
 
