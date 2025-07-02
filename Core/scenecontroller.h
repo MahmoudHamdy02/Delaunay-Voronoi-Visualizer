@@ -26,7 +26,8 @@ class SceneController : public QObject
 
     // Drawing
     const float pointRadius = 8.0f;
-    const QPen pointPen = QPen();
+    const QPen pointPen = QPen(Qt::blue);
+    const QPen cellPen = QPen(Qt::red);
     const QBrush pointBrush = QBrush(Qt::BrushStyle::SolidPattern);
 
     bool drawDelaunayTriangles = true;

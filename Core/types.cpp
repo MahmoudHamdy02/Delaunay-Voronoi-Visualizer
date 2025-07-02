@@ -42,6 +42,8 @@ Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
     edges.emplace_back(p1, p2);
     edges.emplace_back(p2, p3);
     edges.emplace_back(p3, p1);
+
+    circumcircleCenter = getCircumcircleCenter(this->p1, this->p2, this->p3);
 }
 
 bool Triangle::contains(const Edge& edge) const
@@ -73,4 +75,20 @@ bool Triangle::isPointInsideCircumcircle(QPointF p) const
 bool Triangle::operator==(const Triangle& other) const
 {
     return edges[0] == other.edges[0] && edges[1] == other.edges[1] && edges[2] == other.edges[2];
+}
+
+// See: https://en.wikipedia.org/wiki/Circumcircle#Circumcenter_coordinates
+QPointF Triangle::getCircumcircleCenter(const QPointF& A, const QPointF& B, const QPointF& C)
+{
+    qreal D = 2.0 * (A.x() * (B.y() - C.y()) + B.x() * (C.y() - A.y()) + C.x() * (A.y() - B.y()));
+
+    qreal Ux = ((A.x() * A.x() + A.y() * A.y()) * (B.y() - C.y()) + (B.x() * B.x() + B.y() * B.y()) * (C.y() - A.y()) +
+                (C.x() * C.x() + C.y() * C.y()) * (A.y() - B.y())) /
+               D;
+
+    qreal Uy = ((A.x() * A.x() + A.y() * A.y()) * (C.x() - B.x()) + (B.x() * B.x() + B.y() * B.y()) * (A.x() - C.x()) +
+                (C.x() * C.x() + C.y() * C.y()) * (B.x() - A.x())) /
+               D;
+
+    return QPointF(Ux, Uy);
 }

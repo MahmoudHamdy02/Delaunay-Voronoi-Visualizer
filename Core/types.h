@@ -49,9 +49,12 @@ struct hash<Edge> {
 
 class Triangle
 {
+    QPointF getCircumcircleCenter(const QPointF&, const QPointF&, const QPointF&);
+
 public:
     QPointF p1, p2, p3;
     std::vector<Edge> edges;
+    QPointF circumcircleCenter;
 
     Triangle(QPointF, QPointF, QPointF);
 

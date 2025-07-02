@@ -1,5 +1,7 @@
 #include "scenecontroller.h"
 
+#include <qpoint.h>
+
 #include <algorithm>
 #include <iostream>
 #include <unordered_set>
@@ -36,13 +38,25 @@ void SceneController::redrawScene()
                           pointBrush);
     }
 
+    std::vector<Edge> edges = getEdges();
     if (drawDelaunayTriangles) {
-        std::vector<Edge> edges = getEdges();
         for (Edge& e : edges) {
             scene->addLine(e.p1.x(), e.p1.y(), e.p2.x(), e.p2.y());
         }
     }
     if (drawVoronoiCells) {
+        for (Edge e : edges) {
+            // Find the two triangles that share this edge
+            std::vector<QPointF> neighborCircumcenters;
+            for (Triangle t : triangles) {
+                if (t.contains(e)) neighborCircumcenters.push_back(t.circumcircleCenter);
+            }
+            if (neighborCircumcenters.size() == 2) {
+                QPointF c1 = neighborCircumcenters[0];
+                QPointF c2 = neighborCircumcenters[1];
+                scene->addLine(c1.x(), c1.y(), c2.x(), c2.y(), cellPen);
+            }
+        }
     }
 }
 
