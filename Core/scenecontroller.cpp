@@ -59,13 +59,6 @@ std::vector<Edge> SceneController::getEdges() const
     return std::vector<Edge>(edgeSet.begin(), edgeSet.end());
 }
 
-void SceneController::addPoint(const QPointF& point)
-{
-    points.push_back(point);
-    triangulate(point);
-    redrawScene();
-}
-
 // Bowyer-Watson Delaunay Triangulation
 // See: https://en.wikipedia.org/wiki/Delaunay_triangulation
 void SceneController::triangulate(const QPointF& point)
@@ -119,7 +112,9 @@ void SceneController::resetScene()
 // Slots
 void SceneController::onAddPoint(const QPointF& point)
 {
-    addPoint(point);
+    points.push_back(point);
+    triangulate(point);
+    redrawScene();
 }
 
 void SceneController::setDrawDelaunayTriangles(bool b)

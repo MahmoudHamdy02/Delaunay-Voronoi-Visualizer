@@ -43,8 +43,6 @@ public:
 
     QGraphicsScene* getScene();
 
-    void addPoint(const QPointF& point);
-
     void resetScene();
 
 public slots:

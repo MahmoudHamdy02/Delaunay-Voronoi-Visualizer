@@ -8,7 +8,6 @@ public:
     QPointF p1, p2;
 
     Edge(QPointF, QPointF);
-    Edge(const Edge&) = default;
 
     bool operator==(const Edge& other) const;
     bool contains(const QPointF& point) const;
