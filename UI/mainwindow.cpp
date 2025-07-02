@@ -17,6 +17,8 @@ MainWindow::MainWindow(SceneController* sceneController, QWidget* parent)
 {
     ui->setupUi(this);
 
+    setWindowTitle("Delaunay-Voronoi Visualiser");
+
     setupMenubar();
     setupToolbar();
     setupOpenGLView();

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>UI/Icons/triangles.svg</file>
+        <file>UI/Icons/cells.svg</file>
+    </qresource>
+</RCC>
