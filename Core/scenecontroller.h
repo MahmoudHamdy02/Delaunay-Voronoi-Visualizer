@@ -19,7 +19,7 @@ class SceneController : public QObject
     QGraphicsScene* scene;
 
     // Geometry
-    const Triangle superTriangle = Triangle({0.0, -400.0}, {400.0, 200.0}, {-400.0, 200.0});
+    const Triangle superTriangle = Triangle({0.0, -2000.0}, {2000.0, 1000.0}, {-2000.0, 1000.0});
 
     std::vector<QPointF> points = {};
     std::vector<Triangle> triangles = {superTriangle};

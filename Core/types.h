@@ -13,6 +13,7 @@ public:
     Edge(const Edge&) = default;
 
     bool operator==(const Edge& other) const;
+    bool contains(const QPointF& point) const;
 };
 
 inline bool operator<(const QPointF& a, const QPointF& b)

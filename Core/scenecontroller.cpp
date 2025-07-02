@@ -35,7 +35,11 @@ std::vector<Edge> SceneController::getEdges() const
     std::unordered_set<Edge> edgeSet;
 
     for (Triangle t : triangles) {
-        for (Edge e : t.edges) edgeSet.insert(e);
+        for (Edge e : t.edges) {
+            // Only insert edge if it is not connect to super triangle
+            if (e.contains(superTriangle.p1) || e.contains(superTriangle.p2) || e.contains(superTriangle.p3)) continue;
+            edgeSet.insert(e);
+        }
     }
 
     return std::vector<Edge>(edgeSet.begin(), edgeSet.end());
@@ -76,7 +80,6 @@ void SceneController::triangulate(const QPointF& point)
         for (Triangle t : invalidTriangles) {
             if (t.contains(e)) num++;
         }
-        std::cout << "num: " << num << std::endl;
         if (num == 1) polygonEdges.push_back(e);
     }
     std::cout << "Polygon edges: " << polygonEdges.size() << std::endl;
