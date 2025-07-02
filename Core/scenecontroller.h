@@ -23,7 +23,6 @@ class SceneController : public QObject
 
     std::vector<QPointF> points = {};
     std::vector<Triangle> triangles = {superTriangle};
-    std::vector<Edge> edges = {};
 
     // Drawing
     const float pointRadius = 8.0f;
