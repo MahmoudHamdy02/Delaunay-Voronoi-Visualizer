@@ -15,8 +15,8 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGL OpenGLWidgets)
 
 set(CORE_SOURCES
-    Core/system.cpp
-    Core/system.h
+    Core/scenecontroller.cpp
+    Core/scenecontroller.h
     Core/types.cpp
     Core/types.h
 )

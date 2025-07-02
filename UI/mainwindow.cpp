@@ -12,7 +12,8 @@
 #include "Widgets/toolbar.h"
 #include "Widgets/view.h"
 
-MainWindow::MainWindow(SceneController* system, QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), system(system)
+MainWindow::MainWindow(SceneController* sceneController, QWidget* parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), sceneController(sceneController)
 {
     ui->setupUi(this);
 
@@ -34,7 +35,7 @@ void MainWindow::onToolbarActionSelected(QAction* action)
 void MainWindow::setupMenubar()
 {
     // File -> New Canvas
-    connect(ui->actionNew_Canvas, &QAction::triggered, this, [this]() { system->resetScene(); });
+    connect(ui->actionNew_Canvas, &QAction::triggered, this, [this]() { sceneController->resetScene(); });
 
     // File -> Exit
     connect(ui->actionExit, &QAction::triggered, this, []() { qApp->exit(); });
@@ -57,9 +58,9 @@ void MainWindow::setupToolbar()
 
 void MainWindow::setupOpenGLView()
 {
-    view = new View(system->getScene(), this);
+    view = new View(sceneController->getScene(), this);
 
-    connect(view, &View::emitAddPoint, system, &SceneController::onAddPoint);
+    connect(view, &View::emitAddPoint, sceneController, &SceneController::onAddPoint);
 
     ui->horizontalLayout->addWidget(view);
 }
