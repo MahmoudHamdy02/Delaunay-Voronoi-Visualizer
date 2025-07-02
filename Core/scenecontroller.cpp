@@ -52,6 +52,8 @@ void SceneController::addPoint(const QPointF& point)
     redrawScene();
 }
 
+// Bowyer-Watson Delaunay Triangulation
+// See: https://en.wikipedia.org/wiki/Delaunay_triangulation
 void SceneController::triangulate(const QPointF& point)
 {
     // Find triangles that are invalidated by the new point

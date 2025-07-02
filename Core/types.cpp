@@ -3,7 +3,6 @@
 #include <qpoint.h>
 
 #include <cmath>
-#include <iostream>
 
 qreal crossProduct(const QPointF& p1, const QPointF& p2)
 {
@@ -27,16 +26,16 @@ bool Edge::contains(const QPointF& point) const
     return point == p1 || point == p2;
 }
 
+// Ensures the vertices are ordered counter-clockwise
 Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
 {
-    // Test if the points are counter-clockwise, if not flip them
     QPointF p12 = p2 - p1;
     QPointF p23 = p3 - p2;
 
     // Test direction using cross product
     qreal z = crossProduct(p12, p23);
+    // Flip if not counter-clockwise
     if (z < 0.0) {
-        std::cout << "flipped" << std::endl;
         this->p1 = p2;
         this->p2 = p1;
     }
@@ -48,11 +47,9 @@ Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
 bool Triangle::contains(const Edge& edge) const
 {
     return edge == edges[0] || edge == edges[1] || edge == edges[2];
-    // return (edge.p1 == edges[0].p1 && edge.p2 == edges[0].p2) || (edge.p1 == edges[1].p1 && edge.p2 == edges[1].p2)
-    // ||
-    //        (edge.p1 == edges[2].p1 && edge.p2 == edges[2].p2);
 }
 
+// See: https://en.wikipedia.org/wiki/Delaunay_triangulation#Algorithms
 bool Triangle::isPointInsideCircumcircle(QPointF p) const
 {
     using std::pow;
