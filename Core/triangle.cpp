@@ -1,29 +1,8 @@
-#include "types.h"
-
-#include <qpoint.h>
-
-#include <cmath>
-
-qreal crossProduct(const QPointF& p1, const QPointF& p2)
-{
-    return p1.x() * p2.y() - p1.y() * p2.x();
-}
+#include "triangle.h"
 
 qreal determinant3x3(qreal a11, qreal a12, qreal a13, qreal a21, qreal a22, qreal a23, qreal a31, qreal a32, qreal a33)
 {
     return a11 * (a22 * a33 - a23 * a32) - a12 * (a21 * a33 - a23 * a31) + a13 * (a21 * a32 - a22 * a31);
-}
-
-Edge::Edge(QPointF p1, QPointF p2) : p1(p1), p2(p2) {}
-
-bool Edge::operator==(const Edge& other) const
-{
-    return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
-}
-
-bool Edge::contains(const QPointF& point) const
-{
-    return point == p1 || point == p2;
 }
 
 // Ensures the vertices are ordered counter-clockwise
@@ -33,7 +12,7 @@ Triangle::Triangle(QPointF p1, QPointF p2, QPointF p3) : p1(p1), p2(p2), p3(p3)
     QPointF p23 = p3 - p2;
 
     // Test direction using cross product
-    qreal z = crossProduct(p12, p23);
+    qreal z = p12.x() * p23.y() - p12.y() * p23.x();
     // Flip if not counter-clockwise
     if (z < 0.0) {
         this->p1 = p2;

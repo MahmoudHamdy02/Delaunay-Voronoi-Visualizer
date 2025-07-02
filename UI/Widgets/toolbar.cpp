@@ -1,9 +1,5 @@
 #include "toolbar.h"
 
-#include <qaction.h>
-#include <qtoolbar.h>
-#include <qwidget.h>
-
 Toolbar::Toolbar(QWidget* parent) : QToolBar(parent)
 {
     setMovable(false);

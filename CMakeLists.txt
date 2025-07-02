@@ -17,8 +17,10 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGL OpenGLWidg
 set(CORE_SOURCES
     Core/scenecontroller.cpp
     Core/scenecontroller.h
-    Core/types.cpp
-    Core/types.h
+    Core/triangle.cpp
+    Core/triangle.h
+    Core/edge.cpp
+    Core/edge.h
 )
 
 set(UI_SOURCES

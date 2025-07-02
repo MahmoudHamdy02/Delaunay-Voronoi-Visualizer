@@ -5,11 +5,11 @@
 #include <qobject.h>
 #include <qpen.h>
 #include <qpoint.h>
-#include <qtmetamacros.h>
 
 #include <vector>
 
-#include "types.h"
+#include "edge.h"
+#include "triangle.h"
 
 // Manages the graphics scene and the geometry entities
 class SceneController : public QObject

@@ -1,11 +1,6 @@
 #include "scenecontroller.h"
 
-#include <qpoint.h>
-
-#include <algorithm>
-#include <iostream>
 #include <unordered_set>
-#include <vector>
 
 SceneController::SceneController()
 {
@@ -82,7 +77,6 @@ void SceneController::triangulate(const QPointF& point)
             invalidTriangles.push_back(t);
         }
     }
-    std::cout << "Invalid triangles: " << invalidTriangles.size() << std::endl;
 
     std::unordered_set<Edge> invalidEdges;
     for (const Triangle& t : invalidTriangles) {
@@ -90,7 +84,6 @@ void SceneController::triangulate(const QPointF& point)
             invalidEdges.insert(e);
         }
     }
-    std::cout << "Invalid edges: " << invalidEdges.size() << std::endl;
 
     // Find the boundary of the polygon hole
     // The boundary edges are part of only one bad triangle
@@ -103,7 +96,6 @@ void SceneController::triangulate(const QPointF& point)
         }
         if (num == 1) polygonEdges.push_back(e);
     }
-    std::cout << "Polygon edges: " << polygonEdges.size() << std::endl;
 
     // Remove the invalid triangles
     for (const Triangle& t : invalidTriangles) {
