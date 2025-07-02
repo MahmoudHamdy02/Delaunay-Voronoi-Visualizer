@@ -29,6 +29,9 @@ class SceneController : public QObject
     const QPen pointPen = QPen();
     const QBrush pointBrush = QBrush(Qt::BrushStyle::SolidPattern);
 
+    bool drawDelaunayTriangles = true;
+    bool drawVoronoiCells = false;
+
     void triangulate(const QPointF& point);
 
     void redrawScene();
@@ -40,6 +43,8 @@ public:
     QGraphicsScene* getScene();
 
     void addPoint(const QPointF& point);
+    void setDrawDelaunayTriangles(bool);
+    void setDrawVoronoiCells(bool);
 
     void resetScene();
 

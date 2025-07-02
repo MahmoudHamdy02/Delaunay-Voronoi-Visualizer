@@ -9,11 +9,11 @@
 
 class Toolbar : public QToolBar
 {
-    QActionGroup* actionGroup;
     QAction* delaunayAction;
     QAction* voronoiAction;
 
 public:
     Toolbar(QWidget* parent);
-    QActionGroup* getActionGroup() const;
+    QAction* getDelaunayAction() const;
+    QAction* getVoronoiAction() const;
 };

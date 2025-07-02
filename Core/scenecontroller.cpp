@@ -16,6 +16,17 @@ QGraphicsScene* SceneController::getScene()
     return scene;
 }
 
+void SceneController::setDrawDelaunayTriangles(bool b)
+{
+    drawDelaunayTriangles = b;
+    redrawScene();
+}
+
+void SceneController::setDrawVoronoiCells(bool b)
+{
+    drawVoronoiCells = b;
+    redrawScene();
+}
 void SceneController::redrawScene()
 {
     scene->clear();
@@ -24,9 +35,14 @@ void SceneController::redrawScene()
         scene->addEllipse(p.x() - pointRadius / 2.0f, p.y() - pointRadius / 2.0f, pointRadius, pointRadius, pointPen,
                           pointBrush);
     }
-    std::vector<Edge> edges = getEdges();
-    for (Edge& e : edges) {
-        scene->addLine(e.p1.x(), e.p1.y(), e.p2.x(), e.p2.y());
+
+    if (drawDelaunayTriangles) {
+        std::vector<Edge> edges = getEdges();
+        for (Edge& e : edges) {
+            scene->addLine(e.p1.x(), e.p1.y(), e.p2.x(), e.p2.y());
+        }
+    }
+    if (drawVoronoiCells) {
     }
 }
 
