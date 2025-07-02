@@ -18,17 +18,6 @@ QGraphicsScene* SceneController::getScene()
     return scene;
 }
 
-void SceneController::setDrawDelaunayTriangles(bool b)
-{
-    drawDelaunayTriangles = b;
-    redrawScene();
-}
-
-void SceneController::setDrawVoronoiCells(bool b)
-{
-    drawVoronoiCells = b;
-    redrawScene();
-}
 void SceneController::redrawScene()
 {
     scene->clear();
@@ -139,4 +128,16 @@ void SceneController::resetScene()
 void SceneController::onAddPoint(const QPointF& point)
 {
     addPoint(point);
+}
+
+void SceneController::setDrawDelaunayTriangles(bool b)
+{
+    drawDelaunayTriangles = b;
+    redrawScene();
+}
+
+void SceneController::setDrawVoronoiCells(bool b)
+{
+    drawVoronoiCells = b;
+    redrawScene();
 }

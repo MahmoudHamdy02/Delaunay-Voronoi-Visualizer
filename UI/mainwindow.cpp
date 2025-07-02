@@ -53,17 +53,9 @@ void MainWindow::setupToolbar()
     toolbar = new Toolbar(this);
     addToolBar(Qt::LeftToolBarArea, toolbar);
 
-    QAction* delaunay = toolbar->getDelaunayAction();
-    QAction* voronoi = toolbar->getVoronoiAction();
-    // Keep at least one action checked
-    connect(delaunay, &QAction::toggled, this, [=](bool checked) {
-        if (!checked && !voronoi->isChecked()) delaunay->setChecked(true);
-        sceneController->setDrawDelaunayTriangles(delaunay->isChecked());
-    });
-    connect(voronoi, &QAction::toggled, this, [=](bool checked) {
-        if (!checked && !delaunay->isChecked()) voronoi->setChecked(true);
-        sceneController->setDrawVoronoiCells(voronoi->isChecked());
-    });
+    connect(toolbar->getDelaunayAction(), &QAction::toggled, sceneController,
+            &SceneController::setDrawDelaunayTriangles);
+    connect(toolbar->getVoronoiAction(), &QAction::toggled, sceneController, &SceneController::setDrawVoronoiCells);
 }
 
 void MainWindow::setupOpenGLView()

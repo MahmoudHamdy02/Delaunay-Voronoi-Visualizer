@@ -44,11 +44,11 @@ public:
     QGraphicsScene* getScene();
 
     void addPoint(const QPointF& point);
-    void setDrawDelaunayTriangles(bool);
-    void setDrawVoronoiCells(bool);
 
     void resetScene();
 
 public slots:
     void onAddPoint(const QPointF& point);
+    void setDrawDelaunayTriangles(bool);
+    void setDrawVoronoiCells(bool);
 };
