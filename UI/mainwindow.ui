@@ -30,17 +30,10 @@
      <string>File</string>
     </property>
     <addaction name="actionNew_Canvas"/>
+    <addaction name="actionAbout"/>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionHow_to_use"/>
-    <addaction name="actionAbout"/>
-   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew_Canvas">
@@ -53,14 +46,9 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionHow_to_use">
-   <property name="text">
-    <string>How to use</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>About Qt</string>
    </property>
   </action>
  </widget>
