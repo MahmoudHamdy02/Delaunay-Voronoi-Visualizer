@@ -9,7 +9,7 @@ This program visualizes the duality between the **Delaunay Triangulation** and *
 
 ## Demo
 
-
+![Program demo](./docs/demo/demo.gif)
 
 ## Requirements
 
